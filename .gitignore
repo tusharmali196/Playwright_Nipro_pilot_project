@@ -1,0 +1,22 @@
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Nipro Pilot environment
+Nipro_Pilot/.env.pilot
+
+# Dependencies
+node_modules/
+Nipro_Pilot/node_modules/
+
+# Playwright reports
+test-results/
+playwright-report/
+blob-report/
+playwright/.cache/
+
+# Nipro Pilot Playwright reports
+Nipro_Pilot/test-results/
+Nipro_Pilot/playwright-report/
+Nipro_Pilot/blob-report/
