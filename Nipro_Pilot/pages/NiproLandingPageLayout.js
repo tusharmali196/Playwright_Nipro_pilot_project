@@ -4,10 +4,6 @@ export class NiproLandingPageLayout {
     constructor(page) {
         this.page = page;
 
-        // =========================================================
-        // Layout navigation
-        // =========================================================
-
         this.layoutLink = page.getByRole('link', {
             name: 'Layout',
             exact: true
@@ -27,9 +23,6 @@ export class NiproLandingPageLayout {
             .locator('input[type="submit"][value="Add section"]')
             .last();
 
-        // =========================================================
-        // Layout Builder
-        // =========================================================
 
         this.addBlock = page
             .locator(
@@ -55,9 +48,6 @@ export class NiproLandingPageLayout {
             exact: true
         });
 
-        // =========================================================
-        // News Listing Block
-        // =========================================================
 
         this.newsListingBlock = page.getByRole('link', {
             name: 'News Listing Block',
@@ -68,18 +58,10 @@ export class NiproLandingPageLayout {
             'input[data-drupal-selector^="edit-settings-label-display"]'
         );
 
-        // =========================================================
-        // Signpost With Stats
-        // =========================================================
-
         this.signpostBlock = page.locator(
             'a[href*="layout_builder/add/block"][href*="nipro_signpost_with_stats"]'
         );
     }
-
-    // =========================================================
-    // Layout
-    // =========================================================
 
     async openLayout() {
         await expect(this.layoutLink).toBeVisible({
@@ -117,10 +99,6 @@ export class NiproLandingPageLayout {
         });
     }
 
-    // =========================================================
-    // News Listing Block
-    // =========================================================
-
     async addNewsListingBlock() {
         await expect(this.addBlock).toBeVisible({
             timeout: 20000
@@ -155,9 +133,6 @@ export class NiproLandingPageLayout {
         });
     }
 
-    // =========================================================
-    // Add Signpost With Stats
-    // =========================================================
 
     async addSignpostWithStats() {
     await expect(this.addBlock).toBeVisible({
@@ -209,10 +184,8 @@ export class NiproLandingPageLayout {
         timeout: 30000
     });
 }
-    // =========================================================
-    // Fill current Signpost content block
-    // =========================================================
-async fillSignpostBlock(data) {
+    
+    async fillSignpostBlock(data) {
     const blockDescription = this.page.getByRole('textbox', {
         name: 'Block description*',
         exact: true
@@ -328,9 +301,6 @@ async fillSignpostBlock(data) {
         timeout: 20000
     });
 }
-    // =========================================================
-    // Create current content block
-    // =========================================================
 
     async createContentBlock() {
     const createButton = this.page.getByRole('button', {
@@ -379,9 +349,6 @@ async addNewSignpostContentBlock() {
         timeout: 30000
     });
 }
-    // =========================================================
-    // Create all THREE Signpost content blocks
-    // =========================================================
 
     async createAllThreeSignpostBlocks() {
     await this.addSignpostWithStats();
@@ -425,10 +392,6 @@ async addNewSignpostContentBlock() {
     await this.createContentBlock(block3);
 }
 
-    // =========================================================
-    // Add Block -> Save Layout -> View
-    // =========================================================
-
     async saveLayoutAndView() {
     // Final Add block
     const addBlockButton = this.page
@@ -456,9 +419,6 @@ async addNewSignpostContentBlock() {
         exact: true
     }).first().click();
 }
-    // =========================================================
-    // Verify Signpost blocks on frontend
-    // =========================================================
 
     async verifySignpostBlocksOnFrontend() {
         const expectedHeadlines = [
@@ -478,9 +438,6 @@ async addNewSignpostContentBlock() {
         }
     }
 
-    // =========================================================
-    // Anonymous News verification
-    // =========================================================
 
     async verifyNewsBlockAsAnonymous() {
         const browser = this.page.context().browser();
